@@ -1,337 +1,500 @@
 {
-    "manifestVersion": 1,
-    "id": "Multi-Pickers-Fields-Control",
-    "version": "1.1.332",
-    "name": "Multi Pickers Fields Control",
-    "scopes": [
-        "vso.code_full",
-        "vso.work",
-        "vso.work_write",
-        "vso.identity",
-        "vso.graph",
-        "vso.project",
-        "vso.security_manage"
-    ],
-    "description": "Pick value from filtered list",
-    "publisher": "AviHadad",
-    "icons": {
-        "default": "img/logo.png"
+  "manifestVersion": 1,
+  "id": "Picker-Fields-Control",
+  "version": "2.0.4",
+  "name": "Multi Pickers Fields Control",
+  "scopes": [
+    "vso.code_full",
+    "vso.work",
+    "vso.work_write",
+    "vso.identity",
+    "vso.graph",
+    "vso.project",
+    "vso.security_manage"
+  ],
+  "description": "Pick value from filtered cascading list — unlimited levels",
+  "publisher": "AviHadad",
+  "galleryFlags": [
+    "Public"
+  ],
+  "icons": {
+    "default": "img/logo.png"
+  },
+  "targets": [
+    {
+      "id": "Microsoft.VisualStudio.Services",
+      "version": "[15.0,)"
+    }
+  ],
+  "tags": [
+    "Work Item",
+    "Work Item control",
+    "Usability",
+    "Picker",
+    "Multi Pickers",
+    "Cascading"
+  ],
+  "content": {
+    "details": {
+      "path": "details.md"
     },
-    "targets": [{
-        "id": "Microsoft.VisualStudio.Services",
-        "version": "[15.0,)"
-    }],
-    "tags": [
-        "Work Item",
-        "Work Item control",
-        "Usability",
-        "Picker",
-        "Multi Pickers",
-        "Multi List Values",
-        "Storage",
-        "List",
-        "Cascading"
-    ],
-    "content": {
-        "details": {
-            "path": "details.md"
-        },
-        "license": {
-            "path": "LICENSE.md"
-        },
-        "privacy": {
-            "path": "PRIVACY.md"
-        }
+    "license": {
+      "path": "LICENSE.md"
     },
-    "repository": {
-        "type": "git",
-        "uri": "https://github.com/avih75/PickerFieldsControl"
+    "privacy": {
+      "path": "PRIVACY.md"
+    }
+  },
+  "files": [
+    {
+      "path": "img",
+      "addressable": true
     },
-    "links": {
-        "support": {
-            "uri": "https://github.com/avih75/PickerFieldsControl/issues"
-        },
-        "license": {
-            "uri": "https://github.com/avih75/PickerFieldsControl/blob/master/LICENSE.md"
-        },
-        "privacypolicy": {
-            "uri": "https://github.com/avih75/PickerFieldsControl/blob/master/PRIVACY.md"
-        },
-        "learn": {
-            "uri": "https://github.com/avih75/PickerFieldsControl/blob/master/README.md"
-        },
-        "repository": {
-            "uri": "https://github.com/avih75/PickerFieldsControl"
-        },
-        "issues": {
-            "uri": "https://github.com/avih75/PickerFieldsControl/issues"
-        }
-    },
-    "files": [{
-            "path": "img",
-            "addressable": true
-        },
-        {
-            "path": "scripts",
-            "addressable": true
-        },
-        {
-            "path": "styles",
-            "addressable": true
-        },
-        {
-            "path": "configCsvHub.html",
-            "addressable": true
-        },
-        {
-            "path": "index.html",
-            "addressable": true
-        },
-        {
-            "path": "action.html",
-            "addressable": true
-        }
-    ],
-    "categories": [
-        "Plan and track"
-    ],
-    "contributions": [{
-            "id": "Multi_Pickers_Fields_Control",
-            "description": "Group values from several fields, and calculate new value. regarding the requested functionality",
-            "type": "ms.vss-work-web.work-item-form-control",
-            "targets": [
-                "ms.vss-work-web.work-item-form"
-            ],
-            "properties": {
-                "name": "Multi Pickers Fields with dependencies",
-                "uri": "index.html",
-                "inputs": [{
-                        "id": "ControlName",
-                        "name": "Control Name",
-                        "description": "This field get the controll name, use for label and getting the infos from storage, as the csv file name",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": true
-                        }
-                    },
-                    {
-                        "id": "FieldName1",
-                        "name": "Field Name 1",
-                        "description": "The first field name",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": true
-                        }
-                    },
-                    {
-                        "id": "Field1",
-                        "name": "Field vale 1",
-                        "description": "The first field workItem Field",
-                        "type": "WorkItemField",
-                        "properties": {
-                            "workItemFieldTypes": [
-                                "Integer",
-                                "Double",
-                                "String"
-                            ]
-                        },
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": true
-                        }
-                    }, {
-                        "id": "Field1Hide",
-                        "name": "Field 1 Hide",
-                        "description": "Hide on and off the first select hide",
-                        "inputMode": "CheckBox",
-                        "validation": {
-                            "dataType": "Boolean"
-                        }
-                    },
-                    {
-                        "id": "FieldName2",
-                        "name": "Field Name 2",
-                        "description": "The second field name",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": true
-                        }
-                    },
-                    {
-                        "id": "Field2",
-                        "name": "Field value 2",
-                        "description": "The second field workItem Field",
-                        "type": "WorkItemField",
-                        "properties": {
-                            "workItemFieldTypes": [
-                                "Integer",
-                                "Double",
-                                "String"
-                            ]
-                        },
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": true
-                        }
-                    }, {
-                        "id": "Field2Hide",
-                        "name": "Field 2 Hide",
-                        "description": "Hide on and off the second select hide",
-                        "inputMode": "CheckBox",
-                        "validation": {
-                            "dataType": "Boolean"
-                        }
-                    },
-                    {
-                        "id": "FieldName3",
-                        "name": "Field Name 3",
-                        "description": "The therd field name",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    },
-                    {
-                        "id": "Field3",
-                        "name": "Field value 3",
-                        "description": "The therd field workItem Field",
-                        "type": "WorkItemField",
-                        "properties": {
-                            "workItemFieldTypes": [
-                                "Integer",
-                                "Double",
-                                "String"
-                            ]
-                        },
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    }, {
-                        "id": "Field3Hide",
-                        "name": "Field 3 Hide",
-                        "description": "Hide on and off the therd select hide",
-                        "inputMode": "CheckBox",
-                        "validation": {
-                            "dataType": "Boolean"
-                        }
-                    },
-                    {
-                        "id": "FieldName4",
-                        "name": "Field Name 4",
-                        "description": "The forth field name",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    },
-                    {
-                        "id": "Field4",
-                        "name": "Field value 4",
-                        "description": "The forth field workItem Field",
-                        "type": "WorkItemField",
-                        "properties": {
-                            "workItemFieldTypes": [
-                                "Integer",
-                                "Double",
-                                "String"
-                            ]
-                        },
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    }, {
-                        "id": "Field4Hide",
-                        "name": "Field 4 Hide",
-                        "description": "Hide on and off the fourth select hide",
-                        "inputMode": "CheckBox",
-                        "validation": {
-                            "dataType": "Boolean"
-                        }
-                    },
-                    {
-                        "id": "SummarizeToPath",
-                        "name": "Summarize to a Path view",
-                        "description": "The forth fields toggether as path nice to use for querys and sorts",
-                        "type": "WorkItemField",
-                        "properties": {
-                            "workItemFieldTypes": [
-                                "Integer",
-                                "Double",
-                                "String"
-                            ]
-                        },
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    },
-                    {
-                        "id": "Reposetory",
-                        "name": "Backup Reposetory",
-                        "description": "This field get the project name and the repository name, use only for push the csv content to version control as backup",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    },
-                    {
-                        "id": "ViewOption",
-                        "name": "View Option",
-                        "description": "This field get the Number of combox shows in one line 1-4",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    },
-                    {
-                        "id": "PrivateBehaviure",
-                        "name": "Private Behaviore",
-                        "description": "This field get string of special behavior",
-                        "type": "TextArea",
-                        "validation": {
-                            "dataType": "String",
-                            "isRequired": false
-                        }
-                    }
-                ]
+    {
+      "path": "dist",
+      "addressable": true
+    }
+  ],
+  "categories": [
+    "Plan and track"
+  ],
+  "contributions": [
+    {
+      "id": "Multi_Pickers_Fields_Control",
+      "description": "Cascading picker fields — unlimited levels",
+      "type": "ms.vss-work-web.work-item-form-control",
+      "targets": [
+        "ms.vss-work-web.work-item-form"
+      ],
+      "properties": {
+        "name": "Multi Pickers Fields with dependencies",
+        "uri": "dist/Control/Control.html",
+        "inputs": [
+          {
+            "id": "ControlName",
+            "name": "Control Name",
+            "description": "Storage key for this control's CSV data. Also used as the CSV filename.",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": true
             }
-        },
-        {
-            "id": "myAction",
-            "description": "Run an Upload file in work item actions menus",
-            "type": "ms.vss-web.action",
-            "targets": [
-                "ms.vss-work-web.work-item-context-menu"
-            ],
-            "properties": {
-                "text": "Upload Picker csv",
-                "title": "Upload Picker control CSV Dependencies file",
-                "icon": "img/icon.png",
-                "groupId": "Picker",
-                "uri": "action.html"
+          },
+          {
+            "id": "FieldCount",
+            "name": "Field Count",
+            "description": "Number of cascading levels (2–8). Default: 2.",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
             }
-        },
-        {
-            "id": "configureMultiPickerCSV",
-            "type": "ms.vss-web.hub",
-            "description": "Adds a 'Multi picker Fields Map Configuration' hub to the work Item configuration hub group.",
-            "targets": [
-                "ms.vss-web.collection-admin-hub-group"
-            ],
-            "properties": {
-                "name": "Multi Picker",
-                "uri": "configCsvHub.html",
-                "order": 99
+          },
+          {
+            "id": "FieldName1",
+            "name": "Field Name 1",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": true
             }
-        }
-    ]
+          },
+          {
+            "id": "Field1",
+            "name": "Field 1",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": true
+            }
+          },
+          {
+            "id": "Field1Hide",
+            "name": "Hide Field 1",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field1Required",
+            "name": "Field 1 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName2",
+            "name": "Field Name 2",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": true
+            }
+          },
+          {
+            "id": "Field2",
+            "name": "Field 2",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": true
+            }
+          },
+          {
+            "id": "Field2Hide",
+            "name": "Hide Field 2",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field2Required",
+            "name": "Field 2 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName3",
+            "name": "Field Name 3 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field3",
+            "name": "Field 3 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field3Hide",
+            "name": "Hide Field 3",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field3Required",
+            "name": "Field 3 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName4",
+            "name": "Field Name 4 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field4",
+            "name": "Field 4 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field4Hide",
+            "name": "Hide Field 4",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field4Required",
+            "name": "Field 4 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName5",
+            "name": "Field Name 5 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field5",
+            "name": "Field 5 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field5Hide",
+            "name": "Hide Field 5",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field5Required",
+            "name": "Field 5 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName6",
+            "name": "Field Name 6 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field6",
+            "name": "Field 6 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field6Hide",
+            "name": "Hide Field 6",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field6Required",
+            "name": "Field 6 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName7",
+            "name": "Field Name 7 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field7",
+            "name": "Field 7 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field7Hide",
+            "name": "Hide Field 7",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field7Required",
+            "name": "Field 7 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "FieldName8",
+            "name": "Field Name 8 (optional)",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field8",
+            "name": "Field 8 (optional)",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Field8Hide",
+            "name": "Hide Field 8",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "Field8Required",
+            "name": "Field 8 Required",
+            "inputMode": "CheckBox",
+            "validation": {
+              "dataType": "Boolean"
+            }
+          },
+          {
+            "id": "SummarizeToPath",
+            "name": "Summarize to Path field",
+            "description": "Write backslash-separated path of all level values into this field.",
+            "type": "WorkItemField",
+            "properties": {
+              "workItemFieldTypes": [
+                "Integer",
+                "Double",
+                "String"
+              ]
+            },
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "Reposetory",
+            "name": "Backup Repository",
+            "description": "ProjectName\\RepoName — push CSV backup to this Git repo.",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "ViewOption",
+            "name": "View Option",
+            "description": "Number of dropdowns per row (1–4). Default: 1.",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          },
+          {
+            "id": "PrivateBehaviure",
+            "name": "Private Behaviour",
+            "description": "Set to 'Auto' to auto-select when only one option is available.",
+            "type": "TextArea",
+            "validation": {
+              "dataType": "String",
+              "isRequired": false
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "myAction",
+      "description": "Upload a picker CSV from the work item context menu",
+      "type": "ms.vss-web.action",
+      "targets": [
+        "ms.vss-work-web.work-item-context-menu"
+      ],
+      "properties": {
+        "text": "Upload Picker csv",
+        "title": "Upload Picker control CSV Dependencies file",
+        "icon": "img/icon.png",
+        "groupId": "Picker",
+        "uri": "dist/Action/Action.html"
+      }
+    },
+    {
+      "id": "configureMultiPickerCSV",
+      "type": "ms.vss-web.hub",
+      "description": "Adds a 'Multi picker Fields Map Configuration' hub to the collection admin hub group.",
+      "targets": [
+        "ms.vss-web.collection-admin-hub-group"
+      ],
+      "properties": {
+        "name": "Multi Picker",
+        "uri": "dist/Hub/Hub.html",
+        "order": 99
+      }
+    }
+  ]
 }

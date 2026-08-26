@@ -9,7 +9,7 @@ In this extension, i use the stack service of the Azure DevOps (TFS);
    * ipdate 1.1.315, i added Behaviour parameter - to give it more oprtion
     - Auto : fill automaticly if there is only one option
 
-# Deffine the extension in Azure DevOps
+# Define the extension in Azure DevOps
 
 There is ten Inputs parameters, four of them are optional.
 Control Name    : this is the name of the control (you can put more then one in work item),
