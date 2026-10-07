@@ -1,6 +1,6 @@
 {
   "name": "picker-fields-v2",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "Azure DevOps extension — Multi cascading picker fields control (v2)",
   "scripts": {
     "bump": "node bump-version.js",

@@ -18,56 +18,66 @@ export const CsvUpload: React.FC<Props> = ({ onEdit }) => {
   const [textName, setTextName] = useState("");
   const [headers, setHeaders] = useState<string[]>(["Level 1", "Level 2"]);
 
-  async function save(controlName: string, csvContent: string) {
+  async function save(controlName: string, csvContent: string, openEditor = true): Promise<string> {
     const { result, duplicates } = parseCsv(csvContent);
     const parsedHeaders = getHeaders(csvContent);
     await storeValueList(controlName, result);
 
     const list = await retrieveControlList();
+    let msg: string;
     if (!list.some((c) => c.controlName === controlName)) {
       const scope = controlName.includes("_") ? controlName.split("_")[0] : "Collection";
       list.push({ controlName, projectName: scope, fileName: `${controlName}.csv`, headers: parsedHeaders });
       await storeControlList(list);
-      setMessage(`"${controlName}" created. ${duplicates.length} duplicate(s) skipped.`);
+      msg = `"${controlName}" created. ${duplicates.length} duplicate(s) skipped.`;
     } else {
       const index = list.findIndex((control) => control.controlName === controlName);
       list[index] = { ...list[index], headers: parsedHeaders };
       await storeControlList(list);
-      setMessage(`"${controlName}" updated. ${duplicates.length} duplicate(s) skipped.`);
+      msg = `"${controlName}" updated. ${duplicates.length} duplicate(s) skipped.`;
     }
-    onEdit(controlName, parsedHeaders, csvContent);
+    setMessage(msg);
+    if (openEditor) onEdit(controlName, parsedHeaders, csvContent);
+    return msg;
   }
 
-  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    const controlName = file.name.replace(/\.[^/.]+$/, "");
-    const reader = new FileReader();
-    reader.onload = (ev) => {
-      const content = ev.target?.result as string;
-      save(controlName, content).catch((err) => setMessage(String(err)));
-    };
-    reader.readAsText(file);
+  async function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(e.target.files ?? []);
+    if (!files.length) return;
+    const single = files.length === 1;
+    const results: string[] = [];
+    // Sequential: each save rewrites the shared control list
+    for (const file of files) {
+      const controlName = file.name.replace(/\.[^/.]+$/, "");
+      try {
+        results.push(await save(controlName, await file.text(), single));
+      } catch (err) {
+        results.push(`"${controlName}" failed: ${String(err)}`);
+      }
+    }
+    if (!single) setMessage(`Imported ${files.length} file(s):\n` + results.join("\n"));
+    e.target.value = "";
   }
 
   async function handleTextUpload() {
     if (!textName.trim()) { setMessage("Please enter a control name."); return; }
     if (!textContent.trim()) { setMessage("Please paste CSV content."); return; }
-    await save(textName.trim(), textContent).catch((err) => setMessage(String(err)));
+    await save(textName.trim(), textContent).catch((err) => { setMessage(String(err)); return ""; });
   }
 
   return (
     <div style={{ padding: 16, fontFamily: "Segoe UI, sans-serif" }}>
       <h3 style={{ marginTop: 0 }}>Upload CSV File</h3>
       <p style={{ fontSize: 13, color: "#605e5c" }}>
-        CSV format: first column ignored, then one column per level.
+        CSV format: first column ignored, then one column per level. The file name (without .csv) becomes the control name.
+        Select several files at once to import configurations exported from another collection.
       </p>
 
       <LevelHeaderEditor headers={headers} onChange={setHeaders} />
 
       <div style={{ marginBottom: 24 }}>
-        <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>Select file</label>
-        <input type="file" accept=".csv,.xls,.xlsx" onChange={handleFileChange} />
+        <label style={{ fontWeight: 600, display: "block", marginBottom: 6 }}>Select file(s)</label>
+        <input type="file" accept=".csv" multiple onChange={handleFileChange} />
       </div>
 
       <hr />
@@ -99,7 +109,7 @@ export const CsvUpload: React.FC<Props> = ({ onEdit }) => {
       </button>
 
       {message && (
-        <div style={{ marginTop: 12, padding: "8px 12px", background: "#dff6dd", border: "1px solid #107c10", borderRadius: 2, fontSize: 13 }}>
+        <div style={{ marginTop: 12, padding: "8px 12px", background: "#dff6dd", border: "1px solid #107c10", borderRadius: 2, fontSize: 13, whiteSpace: "pre-line" }}>
           {message}
         </div>
       )}

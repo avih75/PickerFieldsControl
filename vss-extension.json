@@ -1,7 +1,8 @@
 {
   "manifestVersion": 1,
   "id": "Picker-Fields-Control",
-  "version": "2.0.4",
+  "version": "2.0.5",
+  "public": true,
   "name": "Multi Pickers Fields Control",
   "scopes": [
     "vso.code_full",
@@ -12,11 +13,8 @@
     "vso.project",
     "vso.security_manage"
   ],
-  "description": "Pick value from filtered cascading list — unlimited levels",
+  "description": "Cascading (dependent) picker fields for work item forms — up to 8 levels, managed from Project Settings via CSV upload, interactive builder, and CSV export/import.",
   "publisher": "AviHadad",
-  "galleryFlags": [
-    "Public"
-  ],
   "icons": {
     "default": "img/logo.png"
   },
@@ -486,9 +484,9 @@
     {
       "id": "configureMultiPickerCSV",
       "type": "ms.vss-web.hub",
-      "description": "Adds a 'Multi picker Fields Map Configuration' hub to the collection admin hub group.",
+      "description": "Adds a 'Multi picker Fields Map Configuration' hub to Project Settings. Data is stored collection-wide and shared by all projects.",
       "targets": [
-        "ms.vss-web.collection-admin-hub-group"
+        "ms.vss-web.project-admin-hub-group"
       ],
       "properties": {
         "name": "Multi Picker",

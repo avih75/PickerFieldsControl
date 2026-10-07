@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FieldsValuesList, FieldValues } from "../../types";
 import { storeValueList, retrieveControlList, storeControlList } from "../../services/StorageService";
-import { toCsv } from "../../utils/csvParser";
+import { toCsv, downloadCsv } from "../../utils/csvParser";
 import { LevelHeaderEditor } from "./LevelHeaderEditor";
 
 interface GridRow {
@@ -97,14 +97,7 @@ export const CsvBuilder: React.FC<Props> = ({ initialControl }) => {
   function handleExport() {
     if (!controlName.trim()) { setMessage("Please enter a control name before exporting."); return; }
     const data = buildFieldsValuesList(headers, rows);
-    const csv = toCsv(data, headers);
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${controlName.trim()}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
+    downloadCsv(`${controlName.trim()}.csv`, toCsv(data, headers));
   }
 
   return (

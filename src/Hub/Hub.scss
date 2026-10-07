@@ -45,3 +45,20 @@ body {
   flex: 1;
   overflow: auto;
 }
+
+.pf-watermark {
+  flex: 0 0 auto;
+  padding: 3px 16px 5px;
+  text-align: right;
+  font-size: 11px;
+  font-style: italic;
+  line-height: 14px;
+  color: var(--palette-neutral-60, #605e5c);
+  opacity: 0.75;
+  user-select: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+[data-theme="dark"] .pf-watermark { color: #c8c6c4; }

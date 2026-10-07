@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -45,6 +46,9 @@ module.exports = (env, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin({
+        __PF_VERSION__: JSON.stringify(require("./package.json").version),
+      }),
       new HtmlWebpackPlugin({
         template: "./src/Hub/Hub.html",
         filename: "Hub/Hub.html",
